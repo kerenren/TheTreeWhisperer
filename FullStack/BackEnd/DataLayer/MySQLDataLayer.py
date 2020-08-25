@@ -3,47 +3,57 @@ from decouple import config
 from flask import Flask, json, session, redirect, url_for
 from flask_mysqldb import MySQL
 from DataLayer.BaseDataLayer import BaseDataLayer
+import uuid
+from datetime import datetime
 
 
 class MySqlDataLayer(BaseDataLayer):
-    def __init__(self, plant_name):
+    def __init__(self):
         super().__init__()
-        self.plant_id =
-        self.leaf_id =
-        self.plant_name =
-        self.state =
-        self.create_date =
-        self.file_path =
+        self.leaf_id = uuid.uuid4()
+        self.state = ''
+        self.create_date = datetime.now()
+        self.time_stamp = datetime.timestamp(self.create_date)
         self.__connect()
 
 
-    def add_plant(self):
-        try:
-            cursor = self.__mydb.cursor()
-            self.__mydb.start_transaction()
-            sql_plant = "INSERT INTO plants (id, plant_name, state, create_date) VALUES (%s, %s, %s, %s)"
-            val_plant = (self.plant_id, self.plant_name, self.state, self.create_date)
-            cursor.execute(sql_plant, val_plant)
-            self.__mydb.commit()
-            print(cursor.rowcount, "record inserted.")
-            return True
+    # def add_leaf(self):
+    #     try:
+    #         db = "tree_whisperer"
+    #         cursor = self.__mydb.cursor()
+    #         print(cursor)
+    #         cursor.execute("SHOW DATABASES")
+    #         for x in cursor:
+    #             if db not in cursor:
+    #                 cursor.execute("CREATE DATABASE tree_whisperer")
 
-        except mysql.connector.Error as error:
-            print("failed to update Plants", error)
-
-        finally:
-            cursor.close()
+    # def add_plant(self):
+    #     try:
+    #         cursor = self.__mydb.cursor()
+    #         self.__mydb.start_transaction()
+    #         sql_plant = "INSERT INTO plants (id, plant_name, state, create_date) VALUES (%s, %s, %s, %s)"
+    #         val_plant = (self.plant_id, self.plant_name, self.state, self.create_date)
+    #         cursor.execute(sql_plant, val_plant)
+    #         self.__mydb.commit()
+    #         print(cursor.rowcount, "record inserted.")
+    #         return True
+    #
+    #     except mysql.connector.Error as error:
+    #         print("failed to update Plants", error)
+    #
+    #     finally:
+    #         cursor.close()
 
 
     def update_plant(self):
         pass
 
-    def save_leaf(self, photo_path, plant_id)
+    def save_leaf(self, photo_path):
         try:
             cursor = self.__mydb()
             self.__mydb.start_transaction()
-            sql_leaf = "INSERT INTO leafs (id, file_path, create_date) VALUES (%s, %s, %s)"
-            val_leaf = (self.leaf_id, self.plant_id, self.file_path, self.create_date)
+            sql_leaf = "INSERT INTO leafs (id, file_path, create_date, state) VALUES (%s, %s, %s, %s)"
+            val_leaf = (self.leaf_id, photo_path, self.time_stamp, self.state)
             cursor.execute(sql_leaf, val_leaf)
             self.__mydb.commit()
             print(cursor.rowcount, "record inserted")

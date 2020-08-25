@@ -4,7 +4,7 @@ import os
 
 class BaseDataLayer:
     def __init__(self):
-        self.ALLOWED_EXTENSIONS = set(['jpg', 'png'])
+        self.ALLOWED_EXTENSIONS = {'jpg', 'png'}
 
     def add_plant(self):
         pass
@@ -12,7 +12,7 @@ class BaseDataLayer:
     def update_plant(self):
         pass
 
-    def save_leaf(self, photo_path, plant_id):
+    def save_leaf(self, photo_path):
         pass
 
     def get_leaf_id(self):
