@@ -4,33 +4,36 @@ import Classifier from "./components/Classifier.jsx";
 import Dropzone from "./components/DropZone.jsx";
 import ImageList from "./components/ImageList.jsx";
 import NavBar from "./components/NavBar.jsx";
+import CameraFeed from "./components/camera-feed.jsx";
 import cuid from "cuid";
+import axios from "axios";
 
 function App() {
   const [images, setImages] = useState([]);
 
-  const onDrop = useCallback((acceptedFiles) => {
-    acceptedFiles.map((file) => {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        setImages((prevState) => [
-          ...prevState,
-          { id: cuid(), src: e.target.result },
-        ]);
-      };
-      reader.readAsDataURL(file);
-      console.log(file);
-      return file;
-    });
-  }, []);
+  const uploadImage = (file) => {
+    console.log(file);
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const analyze_response = axios
+        .post("http://127.0.0.1:5000/test_pic", formData)
+        .then((data) => {
+          console.log(data);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="App">
-      <div className="Background" style={{ border: "7px solid black" }}>
+      <div className="Background">
         {" "}
         <NavBar />
       </div>
-      <div style={{ border: "5px solid red" }}>
+      <div>
+        {/* <CameraFeed sendFile={uploadImage} /> */}
         <Classifier />
       </div>
     </div>

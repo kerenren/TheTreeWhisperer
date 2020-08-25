@@ -8,7 +8,7 @@ const Classifier = () => {
   const [response, setResponse] = useState(null);
 
   const fileSelectedHandler = (event) => {
-    console.log(event.target.files[0].name);
+    console.log(event.target.files[0]);
     setSelectedFile(event.target.files[0]);
     setuploadBtn(false);
     setImg(URL.createObjectURL(event.target.files[0]));
@@ -18,16 +18,40 @@ const Classifier = () => {
     const fd = new FormData();
     fd.append("image", selectedFile, selectedFile.name);
     try {
-      const analyze_response = await axios.post(
-        "http://127.0.0.1:5000/analyze_leaf",
-        fd
-      );
-      console.log(analyze_response);
-      setResponse(analyze_response.statusText);
+      const analyze_response = await axios
+        .post("http://127.0.0.1:5000/analyze_leaf", fd)
+        .then((data) => {
+          setResponse(data.data.status);
+        });
     } catch (error) {
       console.error(error);
     }
   };
+
+  let result;
+  if (response === "sick") {
+    result = (
+      <div>
+        <div class="alert alert-danger" role="alert">
+          The tree is sick !
+        </div>
+        <img src={"https://media.sciencephoto.com/image/c0419912/800wm"}></img>
+      </div>
+    );
+  } else if (response === "healthy") {
+    result = (
+      <div>
+        <div class="alert alert-success" role="alert">
+          The tree is healthy !
+        </div>
+        <img
+          src={
+            "https://webneel.com/daily/sites/default/files/images/daily/06-2016/6-tree-drawing-by-serhii-liakhevych.preview.jpg"
+          }
+        ></img>
+      </div>
+    );
+  }
 
   return (
     <div className="App">
@@ -35,7 +59,7 @@ const Classifier = () => {
         <div className="image-div">
           <img style={{ height: "100%" }} src={img} />
         </div>
-        <div className="buttons">
+        <div className="buttons" style={{ marginBottom: "2rem" }}>
           <div
             style={{
               display: "inline",
@@ -48,18 +72,20 @@ const Classifier = () => {
               onChange={(e) => fileSelectedHandler(e)}
             />
           </div>
-          <div>
+          <div style={{ display: "inline-block" }}>
             <button
+              class="btn btn-success"
+              style={{ marginLeft: "0.5rem" }}
               disabled={uploadBtn}
               type="submit"
               onClick={() => fileUploadHandler()}
             >
               Analyze
             </button>
+            {result}
           </div>
         </div>
       </div>
-      {response ? <div>{response}</div> : null}
     </div>
   );
 };
