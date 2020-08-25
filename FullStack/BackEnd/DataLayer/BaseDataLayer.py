@@ -1,10 +1,10 @@
 from werkzeug.utils import secure_filename
 import os
-
+from DataLayer.ImageMetaData import ImageMetaData
 
 class BaseDataLayer:
     def __init__(self):
-        self.ALLOWED_EXTENSIONS = set(['jpg', 'png'])
+        self.ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
 
     def add_plant(self):
         pass
@@ -31,3 +31,7 @@ class BaseDataLayer:
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filepath = f'{UPLOAD_FOLDER}{filename}'
             return filepath
+
+    def get_geo_by_photo_path(self,path_name):
+        image = ImageMetaData(path_name)
+        return image.get_lat_lng()

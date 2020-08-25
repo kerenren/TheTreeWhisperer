@@ -26,13 +26,18 @@ def analyse_leaf():
     image = request.files['image']
     photo_path = baseDB.add_leaf_to_fs(image, app, UPLOAD_FOLDER, unique_id)
     result = leaf_doctor(photo_path, model, le)
-    print(result)
+
+    geo_info = baseDB.get_geo_by_photo_path(photo_path)
+    print(geo_info)
+
     # todo: if plant is not exist: add_plant()-> imported from SqlDataLayer()
-    # todo: if plant exists: update_plant() (healthy/sick)-> imported from SqlDataLayer
+    # todo: if plant exists: update_plant(result) (healthy/sick)-> imported from SqlDataLayer
     # todo:  add_leaf(photo_path, plant_id) -> imported from SqlDataLayer
     # todo: last_leaf_id = get_leaf_id() -> imported from SqlDataLayer
 
-    return app.response_class(response=json.dumps({'status': result, 'photo_path': photo_path}),
+    return app.response_class(response=json.dumps({'status': result,
+                                                   'photo_path': photo_path,
+                                                   'geo_info': geo_info}),
                               status=200,
                               mimetype="application/json")
 
