@@ -3,6 +3,9 @@ from flask_cors import CORS
 from DataLayer.BaseDataLayer import *
 import os
 import uuid
+from tensorflow.keras.models import load_model
+import pickle
+from tree_doctor.tree_doctor import leaf_doctor
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -13,18 +16,23 @@ UPLOAD_FOLDER = '{}/uploads/'.format(PROJECT_HOME)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 unique_id = uuid.uuid1()
 
+model = load_model(f"{PROJECT_HOME}/tree_doctor/saved_model/nir_model_leaf")
+le = pickle.load(open(f"{PROJECT_HOME}/tree_doctor/label_encoder.pkl", 'rb'))
+
 
 # analyze leaf
 @app.route('/analyze_leaf', methods=['POST'])
 def analyse_leaf():
     image = request.files['image']
-    photo_path = baseDB.add_leaf_to_fs(image, app, UPLOAD_FOLDER,unique_id)
-    # todo: analyze_leaf(photo_path) -> imported from DS.py
+    photo_path = baseDB.add_leaf_to_fs(image, app, UPLOAD_FOLDER, unique_id)
+    result = leaf_doctor(photo_path, model, le)
+    print(result)
     # todo: if plant is not exist: add_plant()-> imported from SqlDataLayer()
     # todo: if plant exists: update_plant() (healthy/sick)-> imported from SqlDataLayer
     # todo:  add_leaf(photo_path, plant_id) -> imported from SqlDataLayer
+    # todo: last_leaf_id = get_leaf_id() -> imported from SqlDataLayer
 
-    return app.response_class(response=json.dumps({'status': 'healthy', 'photo_path': photo_path}),
+    return app.response_class(response=json.dumps({'status': result, 'photo_path': photo_path}),
                               status=200,
                               mimetype="application/json")
 
