@@ -26,10 +26,13 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
-      {/* <Dropzone onDrop={onDrop} accept={"image/*"} />
-      <ImageList images={images} /> */}
-      <Classifier />
+      <div className="Background" style={{ border: "7px solid black" }}>
+        {" "}
+        <NavBar />
+      </div>
+      <div style={{ border: "5px solid red" }}>
+        <Classifier />
+      </div>
     </div>
   );
 }

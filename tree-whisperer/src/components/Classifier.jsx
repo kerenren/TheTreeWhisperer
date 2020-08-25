@@ -18,14 +18,11 @@ const Classifier = () => {
     const fd = new FormData();
     fd.append("image", selectedFile, selectedFile.name);
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/upload_leaf",
-        fd
-      );
       const analyze_response = await axios.post(
         "http://127.0.0.1:5000/analyze_leaf",
-        selectedFile
+        fd
       );
+      console.log(analyze_response);
       setResponse(analyze_response.statusText);
     } catch (error) {
       console.error(error);
@@ -36,18 +33,30 @@ const Classifier = () => {
     <div className="App">
       <div className="wrapper">
         <div className="image-div">
-          <img src={img} />
+          <img style={{ height: "100%" }} src={img} />
         </div>
         <div className="buttons">
-          <input type="file" onChange={(e) => fileSelectedHandler(e)} />
-
-          <button
-            disabled={uploadBtn}
-            type="submit"
-            onClick={() => fileUploadHandler()}
+          <div
+            style={{
+              display: "inline",
+              paddingRight: "4rem",
+            }}
           >
-            Upload
-          </button>
+            <input
+              style={{ width: "120%" }}
+              type="file"
+              onChange={(e) => fileSelectedHandler(e)}
+            />
+          </div>
+          <div>
+            <button
+              disabled={uploadBtn}
+              type="submit"
+              onClick={() => fileUploadHandler()}
+            >
+              Analyze
+            </button>
+          </div>
         </div>
       </div>
       {response ? <div>{response}</div> : null}
