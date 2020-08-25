@@ -10,9 +10,14 @@ class BaseDataLayer:
     def add_plant(self):
         pass
 
+    def update_plant(self):
+        pass
+
     def save_leaf(self, photo_path, plant_id):
         pass
 
+    def get_leaf_id(self):
+        pass
 
     def allowed_file(self, filename):
         return '.' in filename and \
