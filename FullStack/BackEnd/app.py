@@ -10,7 +10,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = set(['jpg','png'])
+ALLOWED_EXTENSIONS = {'jpg', 'png', 'PNG'}
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -24,8 +24,6 @@ def upload_leaf():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        _path = os.path.abspath("/Users/kelly/Desktop/blob_test/plants")
-
         return filename
 
 
