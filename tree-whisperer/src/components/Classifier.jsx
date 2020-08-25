@@ -4,10 +4,13 @@ import axios from "axios";
 const Classifier = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadBtn, setuploadBtn] = useState(true);
+  const [img, setImg] = useState(null);
 
   const fileSelectedHandler = (event) => {
+    console.log(event.target.files[0].name);
     setSelectedFile(event.target.files[0]);
     setuploadBtn(false);
+    setImg(URL.createObjectURL(event.target.files[0]));
   };
 
   const fileUploadHandler = () => {
@@ -20,6 +23,9 @@ const Classifier = () => {
 
   return (
     <div className="App">
+      <div>
+        <img src={img} />
+      </div>
       <input type="file" onChange={(e) => fileSelectedHandler(e)} />
       <button
         disabled={uploadBtn}
