@@ -2,7 +2,6 @@ body {
   background: #4b5942;
 }
 nav {
-  /* position: fixed; */
   top: 0;
   width: 100vw;
   height: 8vh;
@@ -17,7 +16,7 @@ nav {
 }
 
 .wrapper {
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   width: 50vw;
   height: 40vh;
   padding: 2rem;

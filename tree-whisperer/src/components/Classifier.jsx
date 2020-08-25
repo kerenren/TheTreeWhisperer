@@ -31,24 +31,37 @@ const Classifier = () => {
   let result;
   if (response === "sick") {
     result = (
-      <div>
+      <div style={{ display: "flex" }}>
         <div class="alert alert-danger" role="alert">
           The tree is sick !
         </div>
-        <img src={"https://media.sciencephoto.com/image/c0419912/800wm"}></img>
+        <div>
+          <img
+            src={"https://media.sciencephoto.com/image/c0419912/800wm"}
+          ></img>
+        </div>
       </div>
     );
   } else if (response === "healthy") {
     result = (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          border: "4px solid red",
+        }}
+      >
         <div class="alert alert-success" role="alert">
           The tree is healthy !
         </div>
-        <img
-          src={
-            "https://webneel.com/daily/sites/default/files/images/daily/06-2016/6-tree-drawing-by-serhii-liakhevych.preview.jpg"
-          }
-        ></img>
+        <div>
+          <img
+            style={{ height: "40vh" }}
+            src={
+              "https://webneel.com/daily/sites/default/files/images/daily/06-2016/6-tree-drawing-by-serhii-liakhevych.preview.jpg"
+            }
+          ></img>
+        </div>
       </div>
     );
   }
