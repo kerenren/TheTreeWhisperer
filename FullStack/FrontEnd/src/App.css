@@ -7,12 +7,6 @@ nav {
   height: 8vh;
 }
 
-.nav_ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-}
-
 .Background {
   background-image: url("./images/Screen\ Shot\ 2020-08-25\ at\ 15.36.42.png");
   background-repeat: no-repeat;
