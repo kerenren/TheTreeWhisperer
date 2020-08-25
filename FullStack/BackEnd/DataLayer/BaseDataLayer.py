@@ -18,11 +18,10 @@ class BaseDataLayer:
         return '.' in filename and \
                filename.rsplit('.', 1)[1] in self.ALLOWED_EXTENSIONS
 
-    def add_leaf_to_fs(self, app, UPLOAD_FOLDER):
-        file = request.files['image']
-        print(file)
-        if file and self.allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    def add_leaf_to_fs(self, image, app, UPLOAD_FOLDER):
+        print(image)
+        if image and self.allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filepath = f'{UPLOAD_FOLDER}/{filename}'
             return filepath
