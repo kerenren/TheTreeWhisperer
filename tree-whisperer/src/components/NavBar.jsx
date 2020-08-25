@@ -5,7 +5,7 @@ const NavBar = () => {
     <nav>
       <img
         style={{ height: "110%" }}
-        src={require("../images/TheTreeWhisperer.jpeg")}
+        src={require("../images/logo-vector The Tree Whisperer.png")}
       />
     </nav>
   );
