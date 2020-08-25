@@ -2,6 +2,7 @@ from flask import Flask, request, json
 from flask_cors import CORS
 from DataLayer.BaseDataLayer import *
 import os
+import uuid
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -10,13 +11,14 @@ baseDB = BaseDataLayer()
 PROJECT_HOME = os.path.dirname(os.path.realpath(__file__))
 UPLOAD_FOLDER = '{}/uploads/'.format(PROJECT_HOME)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+unique_id = uuid.uuid1()
 
 
 # analyze leaf
 @app.route('/analyze_leaf', methods=['POST'])
 def analyse_leaf():
     image = request.files['image']
-    photo_path = baseDB.add_leaf_to_fs(image, app, UPLOAD_FOLDER)
+    photo_path = baseDB.add_leaf_to_fs(image, app, UPLOAD_FOLDER,unique_id)
     # todo: analyze_leaf(photo_path) -> imported from DS.py
     # todo: if plant is not exist: add_plant()-> imported from SqlDataLayer()
     # todo: if plant exists: update_plant() (healthy/sick)-> imported from SqlDataLayer
