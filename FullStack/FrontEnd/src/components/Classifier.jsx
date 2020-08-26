@@ -3,6 +3,8 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import healthy from "../images/healthy.png";
+import sick from "../images/sick.png";
 
 const Classifier = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -35,29 +37,25 @@ const Classifier = () => {
   if (response === "sick") {
     result = (
       <Container className="result_container d-flex flex-column">
-        <Row className="alert alert-danger w-75" role="alert">
+        <Row className="alert alert-danger" role="alert">
           The tree is sick !
         </Row>
         <Row className="h-75">
-          <img
-            className="h-100 rounded"
-            src={"https://media.sciencephoto.com/image/c0419912/800wm"}
-          ></img>
+          <img className="h-100 rounded" src={sick} alt="sick plant"></img>
         </Row>
       </Container>
     );
   } else if (response === "healthy") {
     result = (
       <Container className="result_container d-flex flex-column">
-        <Row className="alert alert-success w-75" role="alert">
+        <Row className="alert alert-success" role="alert">
           The tree is healthy !
         </Row>
         <Row className="h-75">
           <img
             className="h-100 rounded"
-            src={
-              "https://webneel.com/daily/sites/default/files/images/daily/06-2016/6-tree-drawing-by-serhii-liakhevych.preview.jpg"
-            }
+            src={healthy}
+            alt="healthy plant"
           ></img>
         </Row>
       </Container>
@@ -67,30 +65,31 @@ const Classifier = () => {
   return (
     <Container className="mt-3">
       <Row className="result_row">
-        <Col xs={8} className="h-100">
-          <Container className="result_container image-div rounded h-100">
-            <div className="h-75">
-              <img src={img} />
-            </div>
-            <Row>
-              <Col xs={8} className="inputWrapper">
-                <input
-                  type="file"
-                  id="file"
-                  onChange={(e) => fileSelectedHandler(e)}
-                />
-              </Col>
-              <Col>
+        <Col xs={8} className="h-100 ">
+          <Container className="result_container align-middle d-flex flex-row justify-content-start rounded h-100">
+            <div className="d-flex flex-column justify-content-strat w-25">
+              <input
+                className="align-items-center align-self-strat"
+                type="file"
+                id="file"
+                onChange={(e) => fileSelectedHandler(e)}
+                title=" "
+              />
+
+              <div className="align-items-center align-self-strat">
                 <button
-                  className="btn btn-success"
+                  className="analyze-btn"
                   disabled={uploadBtn}
                   type="submit"
                   onClick={() => fileUploadHandler()}
                 >
                   Analyze
                 </button>
-              </Col>
-            </Row>
+              </div>
+            </div>
+            <div className="className align-left pl-3">
+              <img className="h-100 pl-3" src={img} />
+            </div>
           </Container>
         </Col>
         <Col xs={3} className="h-100">
