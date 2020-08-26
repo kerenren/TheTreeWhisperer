@@ -5,12 +5,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import healthy from "../images/healthy.png";
 import sick from "../images/sick.png";
+import Geolocation from "./Geolocation";
 
 const Classifier = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadBtn, setuploadBtn] = useState(true);
   const [img, setImg] = useState(null);
   const [response, setResponse] = useState(null);
+  const [location, setLocation] = useState({ lat: 32.0853, lng: 34.7818 });
 
   const fileSelectedHandler = (event) => {
     console.log(event.target.files[0]);
@@ -27,6 +29,7 @@ const Classifier = () => {
         .post("http://127.0.0.1:5000/analyze_leaf", fd)
         .then((data) => {
           setResponse(data.data.status);
+          setLocation(data.data.geo_info);
         });
     } catch (error) {
       console.error(error);
@@ -96,6 +99,7 @@ const Classifier = () => {
           {result}
         </Col>
       </Row>
+      {response && <Geolocation location={location} />}
     </Container>
   );
 };
