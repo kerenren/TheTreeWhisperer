@@ -6,9 +6,11 @@ import uuid
 from tensorflow.keras.models import load_model
 import pickle
 from tree_doctor.tree_doctor import leaf_doctor
+# from DataLayer.MySQLDataLayer import MySqlDataLayer
 
 app = Flask(__name__)
 cors = CORS(app)
+# mySql = MySqlDataLayer()
 
 baseDB = BaseDataLayer()
 PROJECT_HOME = os.path.dirname(os.path.realpath(__file__))
@@ -26,7 +28,6 @@ def analyse_leaf():
     image = request.files['image']
     photo_path = baseDB.add_leaf_to_fs(image, app, UPLOAD_FOLDER, unique_id)
     result = leaf_doctor(photo_path, model, le)
-
     geo_info = baseDB.get_geo_by_photo_path(photo_path)
     print(geo_info)
 

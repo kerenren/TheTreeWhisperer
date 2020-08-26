@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import healthy from "../images/healthy.png";
 import sick from "../images/sick.png";
+import Geolocation from "./Geolocation";
 import Spinner from "react-bootstrap/Spinner";
 
 const Classifier = () => {
@@ -12,6 +13,10 @@ const Classifier = () => {
   const [uploadBtn, setuploadBtn] = useState(true);
   const [img, setImg] = useState(null);
   const [response, setResponse] = useState(null);
+  const [location, setLocation] = useState({
+    lat: 32.052899999999994,
+    lng: 34.772103,
+  });
   const [spinner, setSpinner] = useState(false);
 
   const fileSelectedHandler = (event) => {
@@ -30,6 +35,9 @@ const Classifier = () => {
         .then((data) => {
           setSpinner(false);
           setResponse(data.data.status);
+          if (data.data.geo_info) {
+            setLocation(data.data.geo_info);
+          }
         });
     } catch (error) {
       console.error(error);
@@ -102,6 +110,7 @@ const Classifier = () => {
           {result}
         </Col>
       </Row>
+      {response && <Geolocation location={location} />}
     </Container>
   );
 };
