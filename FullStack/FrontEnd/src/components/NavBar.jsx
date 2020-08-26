@@ -1,15 +1,18 @@
-import React from "react";
-import { Link, withRouter, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
-  const navStyle = {
-    textDecoration: "none",
+  const [page, setPage] = useState("/");
+
+  const changePage = (newPage) => {
+    setPage(newPage);
   };
 
-  const listStyle = {
-    padding: "2rem",
-    color: "black",
-  };
+  const location = useLocation();
+
+  useEffect(() => {
+    changePage(location.pathname);
+  });
 
   const navUl = {
     listStyle: "none",
@@ -19,20 +22,44 @@ const NavBar = () => {
   };
 
   return (
-    <nav style={{ display: "flex" }}>
-      <div style={{ border: "2px solid red" }}>
+    <nav
+      style={{
+        display: "flex",
+        marginLeft: "0.2rem",
+        background: "rgb(253,187,45)",
+        background:
+          "linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(235,240,232,0.6152836134453781) 0%, rgba(187,212,172,0.6152836134453781) 91%)",
+      }}
+    >
+      <div>
         <img
-          style={{ height: "100%", margin: "0.7rem" }}
+          style={{
+            height: "100%",
+          }}
           src={require("../images/logo-vector The Tree Whisperer.png")}
         />
       </div>
-      <div style={{ width: "80%", border: "2px solid red" }}>
+      <div style={{ width: "80%" }}>
         <ul style={navUl}>
-          <Link to="/" style={navStyle}>
-            <li style={listStyle}>Home</li>
+          <Link className="link-style" to="/">
+            <li
+              className="list-style"
+              style={{
+                textDecoration: page == "/" && "underline",
+              }}
+            >
+              Home
+            </li>
           </Link>
-          <Link to="classifier" style={navStyle}>
-            <li style={listStyle}>Classifier</li>
+          <Link className="link-style" to="classifier">
+            <li
+              className="list-style"
+              style={{
+                textDecoration: page == "/classifier" && "underline",
+              }}
+            >
+              Classifier
+            </li>
           </Link>
         </ul>
       </div>

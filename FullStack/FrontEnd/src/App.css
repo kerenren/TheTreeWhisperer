@@ -16,7 +16,6 @@ nav {
   height: 50vh;
 }
 
-
 .image-div {
   background: #e4efc0;
   /* Old browsers */
@@ -36,7 +35,6 @@ nav {
   height: 100%;
 }
 
-
 .input:hover {
   background-color: darken(#99c793, 30%);
   cursor: pointer;
@@ -47,12 +45,12 @@ label[for="file-input"] {
   margin-bottom: 1em;
   font-size: 1em;
   color: #fff;
-  opacity: .9;
+  opacity: 0.9;
   font-weight: bold;
 }
 
 input[type="file"] {
-  cursor: pointer !Important;
+  cursor: pointer !important;
 }
 
 input[type="file"]::-webkit-file-upload-button {
@@ -60,7 +58,7 @@ input[type="file"]::-webkit-file-upload-button {
   padding: 5px 12px;
   background: #424930;
   color: #fff;
-  transition: all .4s;
+  transition: all 0.4s;
   cursor: pointer;
   border-radius: 20px;
   position: absolute;
@@ -76,7 +74,23 @@ input[type="file"]::-ms-browse {
   background: #424930;
   color: #fff;
   font-size: 1em;
-  transition: all .4s;
+  transition: all 0.4s;
   cursor: pointer;
   border-radius: 20px;
+}
+
+.list-style {
+  padding-right: 2.7rem;
+  padding-top: 0.5rem;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.list-style:hover {
+  color: #4b5e3f;
+  transition: 1.5s ease;
+}
+
+.link-style:hover {
+  text-decoration: none;
 }
