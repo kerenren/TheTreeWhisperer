@@ -16,17 +16,6 @@ nav {
   height: 50vh;
 }
 
-.image-div {
-  background: #e4efc0;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #e4efc0 0%, #abbd73 60%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #e4efc0 0%, #abbd73 60%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #e4efc0 0%, #abbd73 60%);
-  text-align: center;
-}
-
 .result_row {
   height: 40vh;
 }
@@ -35,8 +24,7 @@ nav {
   height: 100%;
 }
 
-.input:hover {
-  background-color: darken(#99c793, 30%);
+input[type="file"]:hover {
   cursor: pointer;
 }
 
@@ -51,6 +39,7 @@ label[for="file-input"] {
 
 input[type="file"] {
   cursor: pointer !important;
+  color: transparent;
 }
 
 input[type="file"]::-webkit-file-upload-button {
@@ -61,7 +50,6 @@ input[type="file"]::-webkit-file-upload-button {
   transition: all 0.4s;
   cursor: pointer;
   border-radius: 20px;
-  position: absolute;
   top: 0;
   right: 55%;
   z-index: 99;
@@ -122,4 +110,15 @@ h1 {
     rgba(222, 224, 219, 0.8141631652661064) 4%,
     rgba(255, 255, 255, 0.8057598039215687) 96%
   );
+}
+.analyze-btn {
+  border: none;
+  padding: 5px 12px;
+  background: #424930;
+  color: #fff;
+  transition: all 0.4s;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
 }
