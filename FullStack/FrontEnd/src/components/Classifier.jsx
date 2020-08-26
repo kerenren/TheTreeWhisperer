@@ -5,27 +5,30 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import healthy from "../images/healthy.png";
 import sick from "../images/sick.png";
+import Spinner from "react-bootstrap/Spinner";
 
 const Classifier = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadBtn, setuploadBtn] = useState(true);
   const [img, setImg] = useState(null);
   const [response, setResponse] = useState(null);
+  const [spinner, setSpinner] = useState(false);
 
   const fileSelectedHandler = (event) => {
-    console.log(event.target.files[0]);
     setSelectedFile(event.target.files[0]);
     setuploadBtn(false);
     setImg(URL.createObjectURL(event.target.files[0]));
   };
 
   const fileUploadHandler = async () => {
+    setSpinner(true);
     const fd = new FormData();
     fd.append("image", selectedFile, selectedFile.name);
     try {
       const analyze_response = await axios
         .post("http://127.0.0.1:5000/analyze_leaf", fd)
         .then((data) => {
+          setSpinner(false);
           setResponse(data.data.status);
         });
     } catch (error) {
@@ -93,6 +96,9 @@ const Classifier = () => {
           </Container>
         </Col>
         <Col xs={3} className="h-100">
+          {spinner == true ? (
+            <Spinner animation="border" variant="success" />
+          ) : null}
           {result}
         </Col>
       </Row>
