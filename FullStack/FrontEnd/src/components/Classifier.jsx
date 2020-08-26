@@ -82,7 +82,7 @@ const Classifier = () => {
     <Container className="mt-3">
       <Row className="result_row">
         <Col xs={8} className="h-100 ">
-          <Container className="result_container align-middle d-flex flex-row justify-content-start rounded h-100">
+          <Container className="result_container align-middle d-flex flex-row justify-content-start rounded h-100 w-100">
             <div className="d-flex flex-column justify-content-strat w-25">
               <input
                 className="align-items-center align-self-strat"
@@ -105,7 +105,7 @@ const Classifier = () => {
             </div>
             <div
               className="className align-center pl-3"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", width: "70%" }}
             >
               <img
                 className="h-100 pl-3"
