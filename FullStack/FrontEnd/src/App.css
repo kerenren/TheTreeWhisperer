@@ -1,0 +1,97 @@
+body {
+  background: #4b5942;
+}
+
+nav {
+  top: 0;
+  width: 100vw;
+  height: 8vh;
+}
+
+.Background {
+  background-image: url("./images/Screen\ Shot\ 2020-08-25\ at\ 15.36.42.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow-x: hidden;
+  height: 50vh;
+}
+
+
+.result_row {
+  height: 40vh;
+}
+
+.result_container {
+  height: 100%;
+}
+
+input[type="file"]:hover {
+  cursor: pointer;
+}
+
+label[for="file-input"] {
+  display: block;
+  margin-bottom: 1em;
+  font-size: 1em;
+  color: #fff;
+  opacity: 0.9;
+  font-weight: bold;
+}
+
+input[type="file"] {
+  cursor: pointer !important;
+  color: transparent;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  padding: 5px 12px;
+  background: #424930;
+  color: #fff;
+  transition: all 0.4s;
+  cursor: pointer;
+  border-radius: 20px;
+  top: 0;
+  right: 55%;
+  z-index: 99;
+  font-size: 1.5rem;
+}
+
+input[type="file"]::-ms-browse {
+  border: none;
+  padding: 5px 12px;
+  background: #424930;
+  color: #fff;
+  font-size: 1em;
+  transition: all 0.4s;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.list-style {
+  padding-right: 2.7rem;
+  padding-top: 0.5rem;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.list-style:hover {
+  color: #4b5e3f;
+  transition: 1.5s ease;
+}
+
+.link-style:hover {
+  text-decoration: none;
+}
+
+.analyze-btn {
+  border: none;
+  padding: 5px 12px;
+  background: #424930;
+  color: #fff;
+  transition: all 0.4s;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}

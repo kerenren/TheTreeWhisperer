@@ -12,7 +12,7 @@ class BaseDataLayer:
     def update_plant(self):
         pass
 
-    def save_leaf(self, photo_path, plant_id):
+    def save_leaf(self, photo_path, result):
         pass
 
     def get_leaf_id(self):
