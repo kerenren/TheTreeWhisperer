@@ -13,7 +13,7 @@ const Classifier = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadBtn, setuploadBtn] = useState(true);
   const [img, setImg] = useState(null);
-  const [response, setResponse] = useState("sick");
+  const [response, setResponse] = useState(null);
   const [location, setLocation] = useState({
     lat: 59.334591,
     lng: 18.06324,
@@ -44,8 +44,8 @@ const Classifier = () => {
             setLocation(data.data.geo_info);
           } else {
             setLocation({
-              lat: 59.334591,
-              lng: 18.06324,
+              lat: 9.081999,
+              lng: 8.675277,
             });
           }
         });
@@ -61,12 +61,6 @@ const Classifier = () => {
         <Row className="alert alert-danger" role="alert">
           Your {plantName} has disease {response}
         </Row>
-        {diseaseInformation && (
-          <div>
-            <span>Disease Description: </span>
-            <div className="text-muted">{diseaseInformation}</div>
-          </div>
-        )}
         <Row className="h-75">
           <img className="h-50 m-5 rounded" src={sick} alt="sick plant"></img>
         </Row>
@@ -133,6 +127,12 @@ const Classifier = () => {
           {result}
         </Col>
       </Row>
+      {diseaseInformation[resultString] && (
+        <div>
+          <span className="h3 text-white">Disease Description </span>
+          <div className="text-white">{diseaseInformation[resultString]}</div>
+        </div>
+      )}
       {response && <Geolocation location={location} />}
     </Container>
   );
