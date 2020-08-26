@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Classifier from "./components/Classifier.jsx";
 import NavBar from "./components/NavBar.jsx";
+import Home from "./components/Home.jsx";
 import cuid from "cuid";
 import axios from "axios";
 
@@ -16,7 +17,9 @@ function App() {
           <NavBar />
         </div>
         <Switch>
-          <Route path="/" exact></Route>
+          <Route path="/" exact>
+            <Home />
+          </Route>
           <Route path="/classifier" exact>
             <Classifier />
           </Route>

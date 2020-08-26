@@ -16,7 +16,6 @@ nav {
   height: 50vh;
 }
 
-
 .result_row {
   height: 40vh;
 }
@@ -84,6 +83,34 @@ input[type="file"]::-ms-browse {
   text-decoration: none;
 }
 
+.welcome {
+  background: rgb(253, 187, 45);
+  background: linear-gradient(
+    0deg,
+    rgba(253, 187, 45, 1) 0%,
+    rgba(235, 240, 232, 0.6152836134453781) 0%,
+    rgba(192, 209, 168, 0.2763480392156863) 93%
+  );
+}
+
+h1 {
+  background: rgb(59, 78, 31);
+  background: linear-gradient(
+    0deg,
+    rgba(59, 78, 31, 0.27354691876750703) 4%,
+    rgba(53, 70, 28, 0.8141631652661064) 29%,
+    rgba(68, 91, 36, 0.8897934173669468) 69%
+  );
+}
+
+.card {
+  background: rgb(222, 224, 219);
+  background: linear-gradient(
+    0deg,
+    rgba(222, 224, 219, 0.8141631652661064) 4%,
+    rgba(255, 255, 255, 0.8057598039215687) 96%
+  );
+}
 .analyze-btn {
   border: none;
   padding: 5px 12px;
@@ -94,4 +121,8 @@ input[type="file"]::-ms-browse {
   border-radius: 20px;
   font-size: 1.5rem;
   margin-top: 0.5rem;
+}
+
+.map {
+  margin-top: 10rem;
 }

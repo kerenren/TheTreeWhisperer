@@ -6,30 +6,38 @@ import Col from "react-bootstrap/Col";
 import healthy from "../images/healthy.png";
 import sick from "../images/sick.png";
 import Geolocation from "./Geolocation";
+import Spinner from "react-bootstrap/Spinner";
 
 const Classifier = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadBtn, setuploadBtn] = useState(true);
   const [img, setImg] = useState(null);
   const [response, setResponse] = useState(null);
-  const [location, setLocation] = useState({ lat: 32.0853, lng: 34.7818 });
+  const [location, setLocation] = useState({
+    lat: 32.052899999999994,
+    lng: 34.772103,
+  });
+  const [spinner, setSpinner] = useState(false);
 
   const fileSelectedHandler = (event) => {
-    console.log(event.target.files[0]);
     setSelectedFile(event.target.files[0]);
     setuploadBtn(false);
     setImg(URL.createObjectURL(event.target.files[0]));
   };
 
   const fileUploadHandler = async () => {
+    setSpinner(true);
     const fd = new FormData();
     fd.append("image", selectedFile, selectedFile.name);
     try {
       const analyze_response = await axios
         .post("http://127.0.0.1:5000/analyze_leaf", fd)
         .then((data) => {
+          setSpinner(false);
           setResponse(data.data.status);
-          setLocation(data.data.geo_info);
+          if (data.data.geo_info) {
+            setLocation(data.data.geo_info);
+          }
         });
     } catch (error) {
       console.error(error);
@@ -96,6 +104,9 @@ const Classifier = () => {
           </Container>
         </Col>
         <Col xs={3} className="h-100">
+          {spinner == true ? (
+            <Spinner animation="border" variant="success" />
+          ) : null}
           {result}
         </Col>
       </Row>

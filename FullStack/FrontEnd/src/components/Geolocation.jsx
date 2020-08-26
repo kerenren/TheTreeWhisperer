@@ -2,8 +2,8 @@ import React from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 const mapStyles = {
-  width: "60%",
-  height: "60%",
+  width: "80%",
+  height: "80%",
 };
 
 const Geolocation = (props) => {
@@ -18,10 +18,10 @@ const Geolocation = (props) => {
   };
 
   return (
-    <div className="mt-3">
+    <div className="map">
       <Map
         google={props.google}
-        zoom={10}
+        zoom={30}
         style={mapStyles}
         initialCenter={{
           lat: marker.lat,
@@ -35,5 +35,5 @@ const Geolocation = (props) => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCITyh1CqIhRGZAl3qv9fVNNzOEw2AeSm8",
+  apiKey: "xxxxxx",
 })(Geolocation);
