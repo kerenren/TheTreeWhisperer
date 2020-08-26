@@ -14,8 +14,8 @@ const Classifier = () => {
   const [img, setImg] = useState(null);
   const [response, setResponse] = useState(null);
   const [location, setLocation] = useState({
-    lat: 32.052899999999994,
-    lng: 34.772103,
+    lat: 59.334591,
+    lng: 18.06324,
   });
   const [spinner, setSpinner] = useState(false);
 
@@ -37,6 +37,11 @@ const Classifier = () => {
           setResponse(data.data.status);
           if (data.data.geo_info) {
             setLocation(data.data.geo_info);
+          } else {
+            setLocation({
+              lat: 59.334591,
+              lng: 18.06324,
+            });
           }
         });
     } catch (error) {
@@ -98,8 +103,15 @@ const Classifier = () => {
                 </button>
               </div>
             </div>
-            <div className="className align-left pl-3">
-              <img className="h-100 pl-3" src={img} />
+            <div
+              className="className align-center pl-3"
+              style={{ textAlign: "center" }}
+            >
+              <img
+                className="h-100 pl-3"
+                src={img}
+                style={{ margin: "0 auto" }}
+              />
             </div>
           </Container>
         </Col>
