@@ -7,17 +7,20 @@ import healthy from "../images/healthy.png";
 import sick from "../images/sick.png";
 import Geolocation from "./Geolocation";
 import Spinner from "react-bootstrap/Spinner";
+import diseaseInformation from "../lib/diseaseInformation.js";
 
 const Classifier = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadBtn, setuploadBtn] = useState(true);
   const [img, setImg] = useState(null);
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState("sick");
   const [location, setLocation] = useState({
     lat: 59.334591,
     lng: 18.06324,
   });
   const [spinner, setSpinner] = useState(false);
+  const [plantName, setPlantName] = useState(null);
+  const [resultString, setResultString] = useState(null);
 
   const fileSelectedHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -35,6 +38,8 @@ const Classifier = () => {
         .then((data) => {
           setSpinner(false);
           setResponse(data.data.status);
+          setPlantName(data.data.plant_name);
+          setResultString(data.data.result_string);
           if (data.data.geo_info) {
             setLocation(data.data.geo_info);
           } else {
@@ -50,14 +55,20 @@ const Classifier = () => {
   };
 
   let result;
-  if (response === "sick") {
+  if (response !== "healthy" && response !== null) {
     result = (
       <Container className="result_container d-flex flex-column">
         <Row className="alert alert-danger" role="alert">
-          The tree is sick !
+          Your {plantName} has disease {response}
         </Row>
+        {diseaseInformation && (
+          <div>
+            <span>Disease Description: </span>
+            <div className="text-muted">{diseaseInformation}</div>
+          </div>
+        )}
         <Row className="h-75">
-          <img className="h-100 rounded" src={sick} alt="sick plant"></img>
+          <img className="h-50 m-5 rounded" src={sick} alt="sick plant"></img>
         </Row>
       </Container>
     );
@@ -65,11 +76,11 @@ const Classifier = () => {
     result = (
       <Container className="result_container d-flex flex-column">
         <Row className="alert alert-success" role="alert">
-          The tree is healthy !
+          Your {plantName} plant is healthy !
         </Row>
         <Row className="h-75">
           <img
-            className="h-100 rounded"
+            className="h-50 m-5 rounded"
             src={healthy}
             alt="healthy plant"
           ></img>
