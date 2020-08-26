@@ -1,0 +1,82 @@
+body {
+  background: #4b5942;
+}
+
+nav {
+  top: 0;
+  width: 100vw;
+  height: 8vh;
+}
+
+.Background {
+  background-image: url("./images/Screen\ Shot\ 2020-08-25\ at\ 15.36.42.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow-x: hidden;
+  height: 50vh;
+}
+
+
+.image-div {
+  background: #e4efc0;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #e4efc0 0%, #abbd73 60%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #e4efc0 0%, #abbd73 60%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #e4efc0 0%, #abbd73 60%);
+  text-align: center;
+}
+
+.result_row {
+  height: 40vh;
+}
+
+.result_container {
+  height: 100%;
+}
+
+
+.input:hover {
+  background-color: darken(#99c793, 30%);
+  cursor: pointer;
+}
+
+label[for="file-input"] {
+  display: block;
+  margin-bottom: 1em;
+  font-size: 1em;
+  color: #fff;
+  opacity: .9;
+  font-weight: bold;
+}
+
+input[type="file"] {
+  cursor: pointer !Important;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  padding: 5px 12px;
+  background: #424930;
+  color: #fff;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  right: 55%;
+  z-index: 99;
+  font-size: 1.5rem;
+}
+
+input[type="file"]::-ms-browse {
+  border: none;
+  padding: 5px 12px;
+  background: #424930;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+  border-radius: 20px;
+}
