@@ -25,7 +25,6 @@ const NavBar = () => {
     <nav
       style={{
         display: "flex",
-        marginLeft: "0.2rem",
         background: "rgb(253,187,45)",
         background:
           "linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(235,240,232,0.6152836134453781) 0%, rgba(187,212,172,0.6152836134453781) 91%)",
@@ -35,6 +34,8 @@ const NavBar = () => {
         <img
           style={{
             height: "100%",
+            marginLeft: "0.4rem",
+            marginTop: "0.1rem",
           }}
           src={require("../images/logo-vector The Tree Whisperer.png")}
         />
