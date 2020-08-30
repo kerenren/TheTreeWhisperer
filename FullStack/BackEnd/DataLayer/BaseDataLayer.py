@@ -4,7 +4,7 @@ from DataLayer.ImageMetaData import ImageMetaData
 
 class BaseDataLayer:
     def __init__(self):
-        self.ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
+        self.ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg' , 'JPG'])
 
     def add_plant(self):
         pass

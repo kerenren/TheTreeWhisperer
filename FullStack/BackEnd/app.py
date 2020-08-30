@@ -27,7 +27,9 @@ le = pickle.load(open(f"{PROJECT_HOME}/tree_doctor/label_encoder.pkl", 'rb'))
 def analyse_leaf():
     image = request.files['image']
     photo_path = baseDB.add_leaf_to_fs(image, app, UPLOAD_FOLDER, unique_id)
-    result = leaf_doctor(photo_path, model, le)
+    result2 = leaf_doctor(photo_path, model, le)
+    result = result2.split('___')
+    result.append(result2)
     geo_info = baseDB.get_geo_by_photo_path(photo_path)
     print(geo_info)
 
@@ -36,9 +38,7 @@ def analyse_leaf():
     # todo:  add_leaf(photo_path, plant_id) -> imported from SqlDataLayer
     # todo: last_leaf_id = get_leaf_id() -> imported from SqlDataLayer
 
-    return app.response_class(response=json.dumps({'status': result,
-                                                   'photo_path': photo_path,
-                                                   'geo_info': geo_info}),
+    return app.response_class(response=json.dumps({'plant_name':result[0], 'status': result[1], 'result_string':result[-1],'photo_path': photo_path,'geo_info': geo_info}),
                               status=200,
                               mimetype="application/json")
 
