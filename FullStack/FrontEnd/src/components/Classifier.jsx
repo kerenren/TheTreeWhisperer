@@ -81,8 +81,6 @@ const Classifier = () => {
         </Row>
       </Container>
     );
-  } else if (spinner == true) {
-    result = null;
   }
 
   return (
