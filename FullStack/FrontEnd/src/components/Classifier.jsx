@@ -55,7 +55,7 @@ const Classifier = () => {
   };
 
   let result;
-  if (response !== "healthy" && response !== null) {
+  if (response !== "healthy" && response !== null && spinner == false) {
     result = (
       <Container className="result_container d-flex flex-column">
         <Row className="alert alert-danger" role="alert">
@@ -66,7 +66,7 @@ const Classifier = () => {
         </Row>
       </Container>
     );
-  } else if (response === "healthy") {
+  } else if (response === "healthy" && spinner == false) {
     result = (
       <Container className="result_container d-flex flex-column">
         <Row className="alert alert-success" role="alert">
@@ -81,6 +81,8 @@ const Classifier = () => {
         </Row>
       </Container>
     );
+  } else if (spinner == true) {
+    result = null;
   }
 
   return (
